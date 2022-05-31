@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  var data = [
+  const data = [
     {
       id: "#01",
       image: "../images/image_3.png",
