@@ -13,7 +13,7 @@ $(document).ready(function () {
     },
     {
       id: "#02",
-      //   image: "",
+      image: "../images/image_4.png",
       product_name: "Make a Card",
       category: "Simulators",
       price: "$500",
@@ -24,15 +24,115 @@ $(document).ready(function () {
     },
     {
       id: "#03",
-      image: "../images/image_3.png",
-      product_name: "Management guidelines 2",
+      image: "../images/image_1.png",
+      product_name: "Lorem ipsum dolor sit amet",
       category: "Books",
       price: "$48",
-      quantity: "28",
+      quantity: "0",
+      status: "Out of stock",
+      //   status: ["In stock", "Out of stock"],
+      actions: ["edit", "delete"],
+    },
+    {
+      id: "#04",
+      image: null,
+      product_name: "Academic Membership",
+      category: "Membership",
+      price: "$75",
+      quantity: "-",
       status: "In stock",
       //   status: ["In stock", "Out of stock"],
       actions: ["edit", "delete"],
     },
+    {
+      id: "#05",
+      image: "../images/image_2.png",
+      product_name: "Lorem ipsum dolor sit amet",
+      category: "Books",
+      price: "$24",
+      quantity: "15",
+      status: "In stock",
+      //   status: ["In stock", "Out of stock"],
+      actions: ["edit", "delete"],
+    },
+    {
+      id: "#06",
+      image: null,
+      product_name: "Individual Membership",
+      category: "Membership",
+      price: "$400",
+      quantity: "-",
+      status: "In stock",
+      //   status: ["In stock", "Out of stock"],
+      actions: ["edit", "delete"],
+    },
+    {
+      id: "#07",
+      image: "../images/image_5.png",
+      product_name: "Student Membership",
+      category: "Membership",
+      price: "$50",
+      quantity: "-",
+      status: "In stock",
+      //   status: ["In stock", "Out of stock"],
+      actions: ["edit", "delete"],
+    },
+    {
+      id: "#08",
+      image: null,
+      product_name:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ligula mauris in mus amet, dolor magna.",
+      category: "Simulations",
+      price: "$300",
+      quantity: "20",
+      status: "In stock",
+      //   status: ["In stock", "Out of stock"],
+      actions: ["edit", "delete"],
+    },
+    {
+      id: "#09",
+      image: null,
+      product_name: "Business",
+      category: "Simulations",
+      price: "$100",
+      quantity: "11",
+      status: "In stock",
+      //   status: ["In stock", "Out of stock"],
+      actions: ["edit", "delete"],
+    },
+    {
+        id: "#10",
+        image: "../images/image_3.png",
+        product_name: "Management guidelines",
+        category: "Books",
+        price: "$48",
+        quantity: "0",
+        status: "In stock",
+        //   status: ["In stock", "Out of stock"],
+        actions: ["edit", "delete"],
+      },
+      {
+        id: "#11",
+        image: "../images/image_4.png",
+        product_name: "Make a Card",
+        category: "Simulators",
+        price: "$500",
+        quantity: "5",
+        status: "Out of stock",
+        //   status: ["In stock", "Out of stock"],
+        actions: ["edit", "delete"],
+      },
+      {
+        id: "#12",
+        image: "../images/image_1.png",
+        product_name: "Lorem ipsum dolor sit amet",
+        category: "Books",
+        price: "$48",
+        quantity: "0",
+        status: "Out of stock",
+        //   status: ["In stock", "Out of stock"],
+        actions: ["edit", "delete"],
+      },
   ];
 
   let table = $("#table").DataTable({
@@ -63,25 +163,51 @@ $(document).ready(function () {
         className: "image_col",
         render: function (data) {
           let image;
-          if (data === undefined || data.trim() === "") {
+          if (data === undefined || data === null) {
             image = `<div class="no-image"></div>`;
           } else {
             image = `
-            <img class="image" src=${data}></div>
-        `;
+                <div class="image">
+                    <img class="image" src=${data}>
+                </div>
+            `;
           }
           return image;
         },
       },
-      { data: "product_name", title: "Product name" },
-      { data: "category", title: "Category", className: "category" },
-      { data: "price", title: "Price", orderable: false },
-      { data: "quantity", title: "Quantity", orderable: false },
+      {
+        data: "product_name",
+        title: "Product name",
+        className: "name_col",
+        width: "343px",
+      },
+      {
+        data: "category",
+        title: "Category",
+        className: "category",
+        width: "123px",
+      },
+      {
+        data: "price",
+        title: "Price",
+        orderable: false,
+        className: "col-r",
+        width: "111px",
+      },
+      {
+        data: "quantity",
+        title: "Quantity",
+        orderable: false,
+        className: "col-r col-pad",
+        width: "111px",
+        contentPadding: "74px"
+      },
       {
         data: "status",
         title: "Status",
         orderable: false,
         className: "stock-status",
+        width: "154px",
       },
       {
         data: "actions",
@@ -125,15 +251,21 @@ $(document).ready(function () {
     width: "163px",
   });
 
-  $(".choose-category").on("select2:select", function (e) {
-    var data = e.params.data;
-    table.column(3).search(data.id).draw();
-  });
-  $(".choose-status").on("select2:select", function (e) {
-    var data = e.params.data;
-    table.column(6).search(data.id).draw();
-  });
+  const chooseElem = (element, col)=>{
+    $(element).on("select2:select", function (e) {
+        var data = e.params.data;
+        table.column(col).search(data.id).draw();
+    });
+  }
+
+  chooseElem(".choose-category", 3);
+  chooseElem(".choose-status", 6);
+
   $('input[name="search-in-table"]').keyup(function (e) {
     table.search(e.target.value).draw();
+  });
+
+  $('.actions-container [data-action="delete"]').on("click", function () {
+    table.row($(this).parents("tr")).remove().draw();
   });
 });
