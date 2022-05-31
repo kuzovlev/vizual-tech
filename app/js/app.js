@@ -2,7 +2,7 @@ $(document).ready(function () {
   const data = [
     {
       id: "#01",
-      image: "../images/image_3.png",
+      image: "./images/image_3.png",
       product_name: "Management guidelines",
       category: "Books",
       price: "$48",
@@ -13,7 +13,7 @@ $(document).ready(function () {
     },
     {
       id: "#02",
-      image: "../images/image_4.png",
+      image: "./images/image_4.png",
       product_name: "Make a Card",
       category: "Simulators",
       price: "$500",
@@ -24,7 +24,7 @@ $(document).ready(function () {
     },
     {
       id: "#03",
-      image: "../images/image_1.png",
+      image: "./images/image_1.png",
       product_name: "Lorem ipsum dolor sit amet",
       category: "Books",
       price: "$48",
@@ -46,7 +46,7 @@ $(document).ready(function () {
     },
     {
       id: "#05",
-      image: "../images/image_2.png",
+      image: "./images/image_2.png",
       product_name: "Lorem ipsum dolor sit amet",
       category: "Books",
       price: "$24",
@@ -68,7 +68,7 @@ $(document).ready(function () {
     },
     {
       id: "#07",
-      image: "../images/image_5.png",
+      image: "./images/image_5.png",
       product_name: "Student Membership",
       category: "Membership",
       price: "$50",
@@ -102,7 +102,7 @@ $(document).ready(function () {
     },
     {
         id: "#10",
-        image: "../images/image_3.png",
+        image: "./images/image_3.png",
         product_name: "Management guidelines",
         category: "Books",
         price: "$48",
@@ -113,7 +113,7 @@ $(document).ready(function () {
       },
       {
         id: "#11",
-        image: "../images/image_4.png",
+        image: "./images/image_4.png",
         product_name: "Make a Card",
         category: "Simulators",
         price: "$500",
@@ -124,7 +124,7 @@ $(document).ready(function () {
       },
       {
         id: "#12",
-        image: "../images/image_1.png",
+        image: "./images/image_1.png",
         product_name: "Lorem ipsum dolor sit amet",
         category: "Books",
         price: "$48",
@@ -268,4 +268,16 @@ $(document).ready(function () {
   $('.actions-container [data-action="delete"]').on("click", function () {
     table.row($(this).parents("tr")).remove().draw();
   });
+
+  const bulkActionsButton = $(".bulk-actions button");
+  $('.choose-action').on("select2:select", function (e){
+    console.log(e.params.data);
+    if (e.params.data.id === 'del'){
+        bulkActionsButton.removeAttr("disabled");
+    }
+  });
+
+  bulkActionsButton.on('click', function(){
+      table.clear().draw();
+  })
 });
