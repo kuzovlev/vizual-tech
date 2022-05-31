@@ -57,6 +57,7 @@ body {
 
     #table-section {
         margin-top: 78px;
+        margin-bottom: 64px;
 
         .selections-area {
             display: flex;
@@ -107,7 +108,7 @@ body {
                     }
                 }
             }
-            @media screen and (max-width: 500px) {
+            @media screen and (max-width: 768px) {
                 .bulk-actions{
                     margin: 0 auto 24px auto;
                 }
@@ -191,6 +192,9 @@ body {
                         .image_col{
                             padding-left: 15px;
                         }
+                        .col-r{
+                            text-align: right;
+                        }
                     }
                 }
 
@@ -227,13 +231,14 @@ body {
 
                 .image_col {
                     padding: 0;
+                    width: 93px;
 
                     img {
                         display: block;
                         margin: 10px auto;
                     }
 
-                    .no-image {
+                    .no-image, .image {
                         width: 60px;
                         height: 60px;
                         background-color: #DEE2E6;
@@ -243,8 +248,19 @@ body {
                         background-position: 50%;
                     }
                 }
+                .col-r{
+                    text-align: right;
+                    &.col-pad{
+                        padding-right: 40px;
+                    }
+                }
+                .name_col{
+                    padding-right: 30px;
+                    
+                }
 
                 .stock-status {
+                    padding-left: 34px;
                     width: 120px;
                 }
                 @media screen and (min-width: 500px) {
@@ -277,8 +293,6 @@ body {
                     background: #3E66FB;
                     color: #FFFFFF;
                     border-radius: 50%;
-                    // display: table-cell;
-                    // vertical-align: middle;
                 }
 
                 &.first,
