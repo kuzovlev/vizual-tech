@@ -164,6 +164,7 @@ body {
                             vertical-align: middle;
                         }
                         .sorting{
+                            cursor: pointer;
                             &::after{
                                 background: url(../images/unsorted.svg);
                                 width: 13px;
@@ -213,6 +214,7 @@ body {
                         .action{
                             width: 17px;
                             height: 17px;
+                            cursor: pointer;
                             &[data-action="delete"]{
                                 background: url(../images/delete.svg) no-repeat center;
                             }
