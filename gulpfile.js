@@ -5,6 +5,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const cleancss = require('gulp-clean-css');
 const concat = require('gulp-concat'); 
 const map = require('gulp-sourcemaps');
+const uglify = require('gulp-uglify-es').default; 
 const browserSync = require('browser-sync').create();
 
 function browsersync() {
@@ -30,6 +31,7 @@ function scripts() {
 		'app/js/app.js',
 		])
     .pipe(concat('app.min.js')) 
+	.pipe(uglify()) 
 	.pipe(dest('app/js/')) 
 	.pipe(browserSync.stream())
 }
