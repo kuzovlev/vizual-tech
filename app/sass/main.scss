@@ -126,11 +126,11 @@ body {
                     margin: 0 auto;
                 }
             }
-            @media screen and (min-width:768px){
-                >.select2-container{
-                    width: unset!important;
-                }
-            }
+            // @media screen and (min-width:768px){
+            //     >.select2-container{
+            //         width: unset!important;
+            //     }
+            // }
             @media screen and (min-width:768px) and (max-width:992px) {
                 input[name="search-in-table"]{
                     margin: 0 auto;
